@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 import Container from '../shared/container'
-import Text from '../shared/text'
 
 import Header from './header'
 import Body from './body'
@@ -33,6 +32,9 @@ function Todo() {
       }
       case FILTERS[2]: {
         return setFilteredTodos(todos.filter((todo) => todo.isDone))
+      }
+      default: {
+        return setFilteredTodos([...todos])
       }
     }
   }, [filter, todos])
