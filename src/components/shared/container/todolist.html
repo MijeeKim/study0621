@@ -1,0 +1,25 @@
+import "./styles.css"; //pending, finished 두 분류를 만들고 // input에 처음
+등록된 할일은 pending에 등록한다. // pending에 등록된 일에는 버튼이 두개, //
+삭제할 수 있는 버튼과 finished로 넘길 수 있는 버튼 // finish로 넘어간 일에는
+버튼이 두개. // 삭제할 수 있는 버튼과 pending으로 되돌리는 버튼 const form =
+document.querySelector(".js-form"); const input =
+document.querySelector(".js-input"); const pendingList =
+document.querySelector("ul.pendingList"); const finishedList =
+document.querySelector("ul.finishedList"); let pendingLists = [];
+form.addEventListener("submit", handleSubmit); function reset() { input.value =
+""; } function handleSubmit(e) { e.preventDefault(); const createList =
+document.createElement("li"); createList.id = pendingLists.length + 1;
+pendingList.appendChild(createList); createList.innerHTML = `${input.value}`;
+const btnDelete = document.createElement("button"); btnDelete.className =
+"delete"; btnDelete.innerHTML = "x"; createList.appendChild(btnDelete);
+btnDelete.addEventListener("click", deleteWork); var todoObj = { id:
+`${pendingLists.length + 1}`, text: `${input.value}` };
+pendingLists.push(todoObj); savePending(); reset(); } function savePending() {
+localStorage.setItem("Pending", JSON.stringify(pendingLists)); } function
+deleteWork(e) { // console.log(e.target.parentNode); var parentLi =
+e.target.parentNode; pendingList.removeChild(parentLi); const cleanLists =
+pendingLists.filter(function(pendingList) { return pendingList.id !==
+parseInt(parentLi.id, 10); }); console.log(parentLi.id, cleanLists); //
+pendingLists = cleanLists; localStorage.setItem("Pending",
+JSON.stringify(cleanLists)); } // pendingList.style = "border: 1px solid red;";
+// finishedList.style = "border: 1px solid green;";
