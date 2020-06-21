@@ -2,12 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom' // a태그
 
 import styled from 'styled-components'
-import COLORS from 'color'
 
 import Container from './shared/container'
 import Text from './shared/text'
-
-import Button from './shared/button'
 
 const Styledlink = styled(Link)`
   display: flex;
